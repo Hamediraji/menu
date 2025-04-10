@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="fa">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digi Menu</title>
+  <style>
+   body {
+  margin: 0;
+  font-family: 'Cooper Black', sans-serif;
+  background-color: #111;
+  color: #39FF14;
+  direction: ltr;
+}
+
+header {
+  background-color: #222;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #333;
+  width: 100%;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.glow-text {
+  font-size: 4rem;
+  animation: glowing 1s ease-in-out infinite alternate;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.contact-info {
+  font-size: 1rem; 
+  color: #39FF14;
+  text-align: left;
+}
+
+.logo img {
+  width: 150px; 
+  height: auto;
+}
+
+@keyframes glowing {
+  0% {
+    color: #39FF14;
+    text-shadow: 0 0 5px #39FF14, 0 0 10px #39FF14, 0 0 15px #39FF14, 0 0 20px #39FF14, 0 0 25px #39FF14;
+  }
+  100% {
+    color: #fff;
+    text-shadow: none;
+  }
+}
+
+
+	.glow-text span {
+  	display: inline-block;
+  	animation: glowing 1.4s ease-in-out infinite alternate;
+	font-size: 4rem;
+	}
+
+	.glow-text span:nth-child(1) {
+  	animation-delay: 0s;
+	}
+	.glow-text span:nth-child(2) {
+  	animation-delay: 0.2s;
+	}
+	.glow-text span:nth-child(3) {
+  	animation-delay: 0.4s;
+	}
+	.glow-text span:nth-child(4) {
+  	animation-delay: 0.6s;
+	}
+	.glow-text span:nth-child(5) {
+  	animation-delay: 0.8s;
+	}
+	.glow-text span:nth-child(6) {
+  	animation-delay: 1s;
+	}
+	.glow-text span:nth-child(7) {
+  	animation-delay: 1.2s;
+	}
+	.glow-text span:nth-child(8) {
+  	animation-delay: 1.4s;
+	}
+    .categories, .items {
+       display: grid;
+       grid-template-columns: repeat(4, 1fr);
+       gap: 1rem;
+       padding: 1rem;
+       animation: fadeIn 0.5s ease-in;
+       overflow-y: visible;
+       padding-bottom: 150px;
+    }
+    .card {
+      background-color: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 0;
+      overflow: hidden;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 500px;
+    }
+    .card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 10px #39FF14;
+    }
+    .card img {
+      width: 100%;
+      height: 75%;
+      object-fit: cover;
+      border-bottom: 1px solid #333;
+    }
+    .card h3 {
+      margin: 0;
+      padding: 0.5rem;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #39FF14;
+    }
+    .card .description {
+      font-size: 0.8rem;
+      color: #aaa;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+	  font-family: 'Arial', sans-serif;
+	   
+    }
+    .card .price {
+      font-size: 1rem;
+      color: #39FF14;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+	  font-family: 'Arial', sans-serif;
+    }
+    .back-btn {
+      display: block;
+      margin: 1rem;
+      padding: 1rem 2.5rem;
+      background-color: #333;
+      color: #39FF14;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .back-btn:hover {
+      background-color: #ff0000;
+      color: white;
+    }
+    .order-summary {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #000;
+      border-top: 1px solid #444;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+    .order-summary ul {
+      display: flex;
+      overflow-x: auto;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      gap: 1rem;
+    }
+    .order-summary li {
+      display: flex;
+      align-items: center;
+      margin: 0;
+    }
+    .remove {
+      color: red;
+      cursor: pointer;
+      padding: 0.2rem 0.5rem;
+      border: 1px solid red;
+      border-radius: 5px;
+      margin-left: 10px;
+    }
+    .remove:hover {
+      background-color: #ff0000;
+      color: white;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="header-container">
+    <div class="contact-info">
+      <p>Name Str. 202</p>
+	  <p>12345 Köln</p>
+      <p>Tel:01234 5678</p>
+    </div>
+    <h1 class="glow-text">
+      <span>P</span>
+      <span>i</span>
+      <span>z</span>
+      <span>z</span>
+      <span>a</span>
+      <span>r</span>
+      <span>i</span>
+      <span>a</span>
+    </h1>
+    <div class="logo">
+      <img src="https://i.pinimg.com/736x/54/cb/b1/54cbb1c61a0b8bdde42e0e4bffdacb7c.jpg" alt="Logo" />
+    </div>
+  </div>
+</header>
+
+  <button class="back-btn" style="display: none" onclick="showCategories()">zurück</button>
+  <div id="view" class="categories"></div>
+
+  <div class="order-summary">
+    <strong>Ihre Bestellung:</strong>
+    <ul id="order-list"></ul>
+    <div><strong>Gesamt: </strong><span id="total-price">0</span> €</div>
+  </div>
+
+  <button id="show-summary" title="Ihre Bestellung" onclick="showModal()" style="position: fixed; bottom: 15px; right: 20px; background-color: #39FF14; color: black; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 2rem; cursor: pointer; z-index: 1000;">✔</button>
+
+  <div id="summary-modal" style="display: none; position: fixed; top: 20%; left: 50%; transform: translateX(-50%); background-color: #222; border: 2px solid #39FF14; border-radius: 15px; padding: 1.5rem; z-index: 999; width: 300px; color: #39FF14; text-align: center; box-shadow: 0 0 20px #39FF14;">
+    <h3>Ihre Bestellung :</h3>
+    <ul id="modal-order-list" style="list-style: none; padding: 0;"></ul>
+    <p><strong>Gesamt: <span id="modal-total">0</span> €</strong></p>
+    <p>Dankeschön,Guten Appetit! 😊</p>
+    <button onclick="closeModal()" style="background-color: red; color: white; border: none; padding: 0.5rem 1rem; border-radius: 10px; margin-top: 1rem; cursor: pointer;">Schließen</button>
+  </div>
+
+  <script>
+   const categories = [
+    { 
+        name: 'Pizzen', 
+        image: 'https://i.pinimg.com/736x/aa/82/1e/aa821e2c1f6ed6b4d6c3c60be8f56155.jpg', 
+        items: [
+            { 
+                name: '1-Margherita', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/fc/5c/e3/fc5ce3a2ac5be37126f29063dc5363d1.jpg', 
+                description: 'Klassische Pizza mit Tomaten, Mozzarella und Basilikum.' 
+            },
+			{ 
+                name: '2-Salami', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/bd/e7/32/bde732d565dc0f3b5323b42167d13b5b.jpg', 
+                description: ' mit Tomaten, Mozzarella, Basilikum und Salami.'
+            },
+			{ 
+                name: '3-Sucuk', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/c3/15/f2/c315f238994440a1342f971546a2ce71.jpg', 
+                description: ' mit Tomaten, Mozzarella, Sucuk, Zwiebeln, Peperoni und Oliven.' 
+            },
+            { 
+                name: '4-Tonno', 
+                price: 9.00, 
+                image: 'https://i.pinimg.com/736x/58/fb/b4/58fbb492f49e4f16b2fe1c76e6458d68.jpg', 
+                description: ' mit Tomaten, Mozzarella, Zwiebeln, Peperoni und Thunfisch.' 
+            }
+        ]
+    },
+    { 
+        name: 'Pasta', 
+        image: 'https://i.pinimg.com/736x/0c/01/c6/0c01c6a136f205e224bbfe4e58266bf2.jpg', 
+        items: [
+            { 
+                name: '5-Carbonara', 
+                price: 12.00, 
+                image: 'https://i.pinimg.com/736x/fe/0e/5a/fe0e5a77de963eecfa4d5033a4df80c4.jpg', 
+                description: ' mit Formfleischvorderschinken, Ei und Sahnesauce.' 
+            },
+			{ 
+                name: '6-Bolognese', 
+                price: 12.00, 
+                image: 'https://i.pinimg.com/736x/c4/6d/12/c46d129e97e1eb799c325245d02c8b11.jpg', 
+                description: ' mit Fleischsauce.' 
+            },
+			{ 
+                name: '7-Alslamone', 
+                price: 12.00, 
+                image: 'https://i.pinimg.com/736x/44/64/a7/4464a778dc50d30d49bcfccaa51f56bc.jpg', 
+                description: ' mit Lachs.Spinat,Zwiebeln,Gorgonzolakäse,Sahnesauce und Knoblauch.' 
+            },
+            { 
+                name: '8-Bello', 
+                price: 14.00, 
+                image: 'https://i.pinimg.com/736x/45/dd/bc/45ddbc0f231499153765a2d1fcf05bb5.jpg', 
+                description: ' mit Broccoli, Formfleischvorderschinken und Sahnesauce.' 
+            }
+        ]
+    },
+    { 
+        name: 'Burger', 
+        image: 'https://i.pinimg.com/736x/d9/6b/8f/d96b8f3c534d6d4ace16d69cd47e8596.jpg', 
+        items: [
+            { 
+                name: '9-Hamburger', 
+                price: 9.50, 
+                image: 'https://i.pinimg.com/736x/ae/0f/4b/ae0f4b51223f48d6a66a56902c645749.jpg', 
+                description: 'Tomaten.Zwiebeln, Gewürzgurke, Salat, Ketchup und Mayo.' 
+            },
+			{ 
+                name: '10-Cheesburger', 
+                price: 9.50, 
+                image: 'https://i.pinimg.com/736x/ac/05/af/ac05afa73ee636f438b7ee3f92a6be8c.jpg', 
+                description: 'Cheddar,Tomaten.Zwiebeln, Gewürzgurke, Salat, Ketchup und Mayo.' 
+            },
+			{ 
+                name: '11-Chilicheesburger', 
+                price: 9.50, 
+                image: 'https://i.pinimg.com/736x/79/52/bf/7952bf1f0d4fea4a626ed8ddc21d5e1c.jpg', 
+                description: 'Jalapenos,Cheddar,Tomaten.Zwiebeln, Gewürzgurke, Salat, Chili Salsa.' 
+            },
+            { 
+                name: '12-BBQ Burger', 
+                price: 10.00, 
+                image: 'https://i.pinimg.com/736x/54/72/90/547290c2314299650532a829d32bdd2a.jpg', 
+                description: 'Tomaten.Zwiebeln, Gewürzgurke, Salat und Burgersauce' 
+            }
+        ]
+    },
+    { 
+        name: 'Schnitzel', 
+        image: 'https://i.pinimg.com/736x/29/10/3b/29103b43cb4534cd6b57ec07cf5c1f2c.jpg', 
+        items: [
+            { 
+                name: '13-Klassical Schnitzel', 
+                price: 3.50, 
+                image: 'https://i.pinimg.com/736x/3a/97/7b/3a977b9708b5afbb5145e11f485c9253.jpg', 
+                description: 'Schwien/Hänchen Schnitzel mit Pommess und Salat.' 
+            },
+			{ 
+                name: '14-Brocoli Schnitzel', 
+                price: 3.50, 
+                image: 'https://i.pinimg.com/736x/a3/ce/f4/a3cef42a28e6f92c5584a1bc0b42773c.jpg', 
+                description: 'Schwien/Hänchen Schnitzel mit Pommess,Borocoli und Sahnesauce.' 
+            },
+			{ 
+                name: '15-Rahm Schnitzel', 
+                price: 3.50, 
+                image: 'https://i.pinimg.com/736x/1c/01/f4/1c01f41e7a8830a7a07c5403e5a57ed1.jpg', 
+                description: 'Schwien/Hänchen Schnitzel mit Pommess,Champingnon und Rahmsauce.' 
+            },
+            { 
+                name: '16-Gemüse Schnitzel', 
+                price: 4.00, 
+                image: 'https://i.pinimg.com/736x/0e/57/45/0e57455d11cfea1f6498d0ec063bd697.jpg', 
+                description: 'mit Pommess,Paprika,Champingnon,Knoblauch und Tomatensauce.' 
+            }
+        ]
+    },
+    { 
+        name: 'Kartoffelaufläufe', 
+        image: 'https://i.pinimg.com/736x/e5/07/56/e507568d013079f7003d626ab399e2b8.jpg', 
+        items: [
+            { 
+                name: '17-Kartoffelauflauf', 
+                price: 8.50, 
+                image: 'https://i.pinimg.com/736x/55/a1/e0/55a1e0f1b0330ce8c7189420db81a08c.jpg', 
+                description: 'mit Kartoffeln, Broccoli, ZwiebeIn. Paprika und Tomaten-Sahnesauce.' 
+            },
+			{ 
+                name: '18-Kartoffelauflauf Hawaii', 
+                price: 8.50, 
+                image: 'https://i.pinimg.com/736x/0a/ce/96/0ace9691ee0215757123dddfd7ebadb9.jpg', 
+                description: 'mit Kartoffeln.Ananas,Formfleischvorderschinken und Tomaten-Sahnesauce.' 
+            },
+			{ 
+                name: '19-Kartoffelauflauf Tonno', 
+                price: 8.50, 
+                image: 'https://i.pinimg.com/736x/b9/db/68/b9db685b5115453fb1141a6aeecf1bad.jpg', 
+                description: 'mit Kartoffeln. Thunfisch. Spinat,Zwiebeln,Knoblauch und Tomaten-Sahnesauce.' 
+            },
+            { 
+                name: '20-Kartoffelauflauf-Hähnchen', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/b2/d5/94/b2d594bad3d994027e181e19598cdb5e.jpg', 
+                description: 'mit Kartoffeln, Hähnchenfleisch,Zwiebeln,Knoblauch(scharf).' 
+            }
+        ]
+    },
+    { 
+        name: 'Auf dem Backoffen', 
+        image: 'https://i.pinimg.com/736x/64/ec/9b/64ec9beb3df73f5d66f0e6a176c466f1.jpg', 
+        items: [
+            { 
+                name: '21-Lasagne', 
+                price: 5.00, 
+                image: 'https://i.pinimg.com/736x/6d/31/89/6d3189d24742473a6b3187fc48dffdd6.jpg', 
+                description: 'Breadsticks stuffed with cheese and herbs.' 
+            },
+			{ 
+                name: '22- Cannellonj', 
+                price: 5.00, 
+                image: 'https://i.pinimg.com/736x/87/88/a0/8788a030c6a4dba5c8c01b1fdfac77cb.jpg', 
+                description: 'Breadsticks stuffed with cheese and herbs.' 
+            },
+			{ 
+                name: '23-Überbacken Gemüse', 
+                price: 5.00, 
+                image: 'https://i.pinimg.com/736x/21/f8/df/21f8dfe9099ddeac67963e12514b5fbf.jpg', 
+                description: 'Spinat, fr.Chapignon, Broccoli, Paprika,Tomatensauce und knoblauch.' 
+            },
+            { 
+                name: '24-Pasta Hähnchen', 
+                price: 4.00, 
+                image: 'https://i.pinimg.com/736x/f2/64/bb/f264bbe9120538aaf4dbc9086dca97d9.jpg', 
+                description: 'Penne, Kartoffeln, Zwiebeln, Knoblauch, Curry-Gewürz(scharf)' 
+            }
+        ]
+    },
+    { 
+        name: 'Baguettes', 
+        image: 'https://i.pinimg.com/736x/60/02/97/600297a9fd0c795e016933ae35dc9290.jpg', 
+        items: [
+            { 
+                name: '25- Baguette Salami', 
+                price: 3.00, 
+                image: 'https://i.pinimg.com/736x/06/34/a5/0634a5572fa5872a4b597a8002a3bc5f.jpg', 
+                description: 'mit Salami und Käse.' 
+            },
+			{ 
+                name: '26- Baguette Schinken', 
+                price: 3.00, 
+                image: 'https://i.pinimg.com/736x/fb/c2/54/fbc254a4e387f1aeac2940425f3ae953.jpg', 
+                description: 'mit Formfleischvorderschinken und Käse.' 
+            },
+			{ 
+                name: '27- Baguette Sucuk', 
+                price: 3.00, 
+                image: 'https://i.pinimg.com/736x/a2/5c/a4/a25ca44258292086db798710971c046b.jpg', 
+                description: 'mit Sucuk und Käse.' 
+            },
+            { 
+                name: '28- Baguette Tonno', 
+                price: 4.50, 
+                image: 'https://i.pinimg.com/736x/a1/fc/42/a1fc42b2b0570e0c0504c44bdfb562dd.jpg', 
+                description: ' mit Thunfisch und Käse.' 
+            }
+        ]
+    },
+    { 
+        name: 'Salate', 
+        image: 'https://i.pinimg.com/736x/3d/fd/4f/3dfd4f37116750ca92770e0cc6076bf2.jpg', 
+        items: [
+            { 
+                name: '29- Gemischter Salat', 
+                price: 13.00, 
+                image: 'https://i.pinimg.com/736x/9d/62/22/9d6222be1c87426b0b39c915824d43b6.jpg', 
+                description: 'Mixsalat. Tomaten.Gurken, Zwieblen. Paprika, Mais.' 
+            },
+			{ 
+                name: '30- Capicciosa Salat', 
+                price: 13.00, 
+                image: 'https://i.pinimg.com/736x/4f/38/a4/4f38a405becce70c25535e50ac00db83.jpg', 
+                description: 'grüner Salat, Tomaten, Gurken, Mais, Paprika, Ei, Thunfish, Käse, Formfleischvorderschinken.'
+ 
+            },
+			{ 
+                name: '31-Fit Salat', 
+                price: 13.00, 
+                image: 'https://i.pinimg.com/736x/a6/11/db/a611dbe438ebf151e139eb5a84922001.jpg', 
+                description: 'grüner Salat, Tomaten, Gurken, Champ, Mais, Paprika, Hähnchenstreifer,scharfe Peperoni, Zwiebeln.' 
+            },
+            { 
+                name: '32-Sommer Salat', 
+                price: 15.50, 
+                image: 'https://i.pinimg.com/736x/bc/28/ac/bc28ac268aba23fc5e0d1abe22cc09d2.jpg', 
+                description: 'Salat, Tomaten, Gurken, Ei, Oliven,scharfKäse.' 
+            }
+        ]
+    },
+	 { 
+        name: 'Dönner', 
+        image: 'https://i.pinimg.com/736x/fb/99/c1/fb99c11a0ea6e5cab23d2e3e3db18e66.jpg', 
+        items: [
+            { 
+                name: '33- Döner Tasche', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/df/63/d6/df63d62eccbef67411663a46d306ec2d.jpg', 
+                description: 'Krautsalat und Tyatziki.' 
+            },
+			{ 
+                name: '34- Dürüm Dünner', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/1e/58/db/1e58db057c52d6d6ee8b0e4e613dfef1.jpg', 
+                description: 'Teig eingerollt entweder mit Lammfleischspieß oder Hähnchenspieß.' 
+            },
+			{ 
+                name: '35- Lahmacun', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/2e/35/67/2e3567a46b2960ed38263a83b770f1b9.jpg', 
+                description: 'mit Dönerfleisch, Salat, Knoblauchsauce.' 
+            },
+            { 
+                name: '36- Falafel', 
+                price: 9.00, 
+                image: 'https://i.pinimg.com/736x/34/f1/9a/34f19a701f18700fc97716193669bc09.jpg', 
+                description: 'Falafel und Salat.' 
+            }
+        ]
+    },
+	 { 
+        name: 'Snacks', 
+        image: 'https://i.pinimg.com/736x/09/7f/bb/097fbb34e212cb224e9cbb867622834f.jpg', 
+        items: [
+            { 
+                name: '37- Pommes', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/88/91/8c/88918c71c9fd0013cc4e4b607bc8d3e5.jpg', 
+                description: 'Pommes mit Ketchup und Mayo.' 
+            },
+			{ 
+                name: '38- Mini frühlingsrollen', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/cf/4d/81/cf4d8152ed7184adbd029d3f1dc6f13c.jpg', 
+                description: 'Mini frühlingsrollen 10 stk.' 
+            },
+			{ 
+                name: '39- Curywurst', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/4a/be/90/4abe90f60a7c6f2b245e843066b73e0e.jpg', 
+                description: 'Curywurst mit Pommes Frites.' 
+            },
+            { 
+                name: '40- Chicken Wings', 
+                price: 9.00, 
+                image: 'https://i.pinimg.com/736x/1b/29/ca/1b29ca1bae9d70294e95e1e7719a9d81.jpg', 
+                description: '12 Stk Chicken Wings Pommes,Sauce.' 
+            }
+        ]
+    },
+	 { 
+        name: 'Pizzabrötchen', 
+        image: 'https://i.pinimg.com/736x/f7/0b/23/f70b233bc73748d5a9d2f5702ccfe610.jpg', 
+        items: [
+            { 
+                name: '41- Brötchen', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/61/89/8f/61898ff528dabed25ea33e6dfdd81c93.jpg', 
+                description: 'mit Hausgemachter Kräuterbutter.' 
+            },
+			{ 
+                name: '42-  Brötchen Spezial 1', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/d7/da/a3/d7daa3ff7e2705bcd1b3a5c3200b9619.jpg', 
+                description: 'mit Gouda.HirterSchinken.' 
+            },
+			{ 
+                name: '43- Brötchen Spezial 2', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/24/80/2e/24802e76a021b1dda6a54859514c4d96.jpg', 
+                description: 'mit Gouda. Salami.' 
+            },
+            { 
+                name: '44- Brötchen Spezial 3', 
+                price: 9.00, 
+                image: 'https://i.pinimg.com/736x/5e/17/1f/5e171fc6feaab91a4b8d55596983788f.jpg', 
+                description: ' mit Gouda, Thunfisch.Zwiebeln.' 
+            }
+        ]
+    },
+	 { 
+        name: 'Veganes', 
+        image: 'https://i.pinimg.com/736x/8c/32/7e/8c327e99099e7d4784713aca44a1c97e.jpg', 
+        items: [
+            { 
+                name: '45- Vegan Burger', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/8c/a8/76/8ca8765da5b7827ebf46aa5e6dd5b2af.jpg', 
+                description: 'Vegan Burger.' 
+            },
+			{ 
+                name: '46- Vegan Pizza', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/f5/58/e7/f558e7115989aa0f9e5a7b18bff3c514.jpg', 
+                description: 'Vegan Pizza.' 
+            },
+			{ 
+                name: '47- Vegan Snacks', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/75/d2/b3/75d2b3c5b1e6ea108c7d4bfdcab5974c.jpg', 
+                description: 'Vegan Nuggets.' 
+            },
+            { 
+                name: '48- Vegan Auflauf', 
+                price: 9.00, 
+                image: 'https://i.pinimg.com/736x/0a/f4/0f/0af40ff36e6c14b5ac37352a4596dfa2.jpg', 
+                description: 'Gemüse Auflauf.' 
+            }
+        ]
+    },
+	{ 
+        name: 'Dessert', 
+        image: 'https://i.pinimg.com/736x/4c/57/37/4c5737f1af0a6afc369af5676236a818.jpg', 
+        items: [
+            { 
+                name: '49- Tiramisu', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/32/1c/64/321c64a91db8ef9666696a64dcd6877b.jpg', 
+                description: 'Tiramisu.' 
+            },
+			{ 
+                name: '50- Deep Chocolate Brownie', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/32/18/c3/3218c3fc02eada3b0081caa469f4ecb0.jpg', 
+                description: 'Deep Chocolate Brownie.' 
+            },
+			{ 
+                name: '51- Eis', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/75/3d/51/753d51356f00267504ca0935f55be578.jpg', 
+                description: 'Eis.' 
+            },
+            { 
+                name: '52- Torte', 
+                price: 9.00, 
+                image: 'https://i.pinimg.com/736x/3e/39/6a/3e396ae237cb8edc88978a7b40095478.jpg', 
+                description: 'Torte.' 
+            }
+        ]
+    },
+	{ 
+        name: 'Hotdogs', 
+        image: 'https://i.pinimg.com/736x/02/40/6e/02406eb43aa69fedd6bcac0803295436.jpg', 
+        items: [
+            { 
+                name: '53- Klassischer Hotdog', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/67/05/54/67055480d9f94913266bf87fa642d3fb.jpg', 
+                description: 'Klassischer Hotdog.' 
+            },
+			{ 
+                name: '54- Schwedischer Hotdog', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/07/97/3d/07973d58cf5ec97522a01c6fa52f0348.jpg', 
+                description: 'Schwedischer Hotdog.' 
+            },
+			{ 
+                name: '55- Chili-Cheese Hotdog', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/00/79/3a/00793a04fff0a28c54877530d73c2a66.jpg', 
+                description: 'Chili-Cheese Hotdog.' 
+            },
+            { 
+                name: '56- BBQ Hotdog', 
+                price: 9.00, 
+                image: 'https://i.pinimg.com/736x/b7/19/7c/b7197c8117b6cd249f54b0434a321c5e.jpg', 
+                description: 'BBQ Hotdog.' 
+            }
+        ]
+    },
+	{ 
+        name: 'Getränke', 
+        image: 'https://i.pinimg.com/736x/8c/b0/20/8cb020babaeb7586ac0f70c89dae9b06.jpg', 
+        items: [
+            { 
+                name: '57- Cola', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/23/42/43/23424317bb4bff6656941d675245bf6f.jpg', 
+                description: 'Cola - Fanta - Light - Sprite.' 
+            },
+			{ 
+                name: '58- Ayran', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/77/ec/a5/77eca555efc58362ce80a086df849736.jpg', 
+                description: 'Ayran.' 
+            },
+			{ 
+                name: '59- Kölsch', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/7a/d2/09/7ad209869f5066961b005ef42246fea7.jpg', 
+                description: 'Kölsch.' 
+            },
+            { 
+                name: '60- Lambrusco', 
+                price: 9.00, 
+                image: 'https://i.pinimg.com/736x/0a/e7/e0/0ae7e0a62377e6c8d169b785c1478622.jpg', 
+                description: 'Lambrusco.' 
+            }
+        ]
+    },
+	{ 
+        name: 'Angebote', 
+        image: 'https://i.pinimg.com/736x/27/cf/d7/27cfd79fcc62710a882677c24a710c87.jpg', 
+        items: [
+            { 
+                name: '61- Mittag Pizza', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/34/61/d9/3461d903a366985c856a341f75be596f.jpg', 
+                description: 'Pizza mit Cola.' 
+            },
+			{ 
+                name: '62- Mittag Pasta', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/73/9a/0c/739a0cc9ac75eeb26aef25593af84b2f.jpg', 
+                description: 'Pasta mit Cola.' 
+            },
+			{ 
+                name: '63- Mittag Burger', 
+                price: 7.50, 
+                image: 'https://i.pinimg.com/736x/77/7e/e4/777ee4822676394c955c5f654b4ec40a.jpg', 
+                description: 'Burger mit Cola.' 
+            },
+            { 
+                name: 'Family Angebote', 
+                price: 9.00, 
+                image: 'https://i.pinimg.com/736x/08/7e/0a/087e0aaefd25a03828e07c6ab0cbe180.jpg', 
+                description: '2 Pizza , 2 Pasta , 2 Salate , 2 Cola.' 
+            }
+        ]
+    },
+];
+
+
+    const view = document.getElementById('view');
+    const backBtn = document.querySelector('.back-btn');
+    const orderList = document.getElementById('order-list');
+    const totalPriceElement = document.getElementById('total-price');
+    const modalOrderList = document.getElementById('modal-order-list');
+    const modalTotal = document.getElementById('modal-total');
+    let orders = [];
+
+    function showCategories() {
+      backBtn.style.display = 'none';
+      view.className = 'categories';
+      view.innerHTML = '';
+      categories.forEach((cat, index) => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `
+          <img src="${cat.image}" alt="${cat.name}" />
+          <h3>${cat.name}</h3>
+        `;
+        div.onclick = () => showItems(index);
+        view.appendChild(div);
+      });
+    }
+
+    function showItems(index) {
+      const cat = categories[index];
+      backBtn.style.display = 'block';
+      view.className = 'items';
+      view.innerHTML = '';
+      cat.items.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'card item';
+        div.innerHTML = `
+          <img src="${item.image}" alt="${item.name}" onclick="addToOrder('${item.name}', ${item.price})" />
+          <h3>${item.name}</h3>
+          <div class="description">${item.description}</div>
+          <div class="price">${item.price} €</div>
+        `;
+        view.appendChild(div);
+      });
+    }
+
+    function addToOrder(itemName, itemPrice) {
+      orders.push({ name: itemName, price: itemPrice });
+      renderOrder();
+    }
+
+    function removeFromOrder(index) {
+      orders.splice(index, 1);
+      renderOrder();
+    }
+
+    function renderOrder() {
+      orderList.innerHTML = '';
+      let total = 0;
+      orders.forEach((order, i) => {
+        const li = document.createElement('li');
+        li.innerHTML = `${order.name} : ${order.price} € <span class="remove" onclick="removeFromOrder(${i})">Löschen</span>`;
+        orderList.appendChild(li);
+        total += order.price;
+      });
+      totalPriceElement.textContent = total.toFixed(2);
+    }
+
+    function showModal() {
+      modalOrderList.innerHTML = '';
+      let total = 0;
+      orders.forEach(order => {
+        const li = document.createElement('li');
+        li.textContent = `${order.name} : ${order.price} €`;
+        modalOrderList.appendChild(li);
+        total += order.price;
+      });
+      modalTotal.textContent = total.toFixed(2);
+      document.getElementById('summary-modal').style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('summary-modal').style.display = 'none';
+    }
+
+    // نمایش دسته‌ها به طور پیش‌فرض
+    showCategories();
+  </script>
+</body>
+</html>
